@@ -794,6 +794,19 @@ RCT_EXPORT_METHOD(decimateMesh
     }
 }
 
+RCT_EXPORT_METHOD(mirrorMesh
+                  : (RCTPromiseResolveBlock)resolve rejecter
+                  : (RCTPromiseRejectBlock)reject)
+{
+    auto status = [ScandyCore mirrorMesh];
+    auto statusString = [self formatStatusError:status];
+    if (status == scandy::core::Status::SUCCESS) {
+        return resolve(statusString);
+    } else {
+        return reject(statusString, statusString, nil);
+    }
+}
+
 RCT_EXPORT_METHOD(smoothMesh
                   : (int)iterations resolver
                   : (RCTPromiseResolveBlock)resolve rejecter
