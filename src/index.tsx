@@ -241,6 +241,9 @@ type RouxType = {
   generateMesh(): Promise<any>;
   saveScan(filePath: string): Promise<any>;
   setSize(size: number): Promise<any>;
+  setNoiseFilter(size: number): Promise<any>;
+  setEnableColorViewport(enable: boolean): Promise<any>;
+  setEnableColor(enable: boolean): Promise<any>;
   loadMesh(dict: object): Promise<any>;
   toggleV2Scanning(enabled: boolean): Promise<any>;
   getV2ScanningEnabled(): Promise<any>;
@@ -259,6 +262,7 @@ type RouxType = {
   connectToCommandHost(ip_address: string): Promise<any>;
   clearCommandHosts(): Promise<any>;
   decimateMesh(percent: number): Promise<any>;
+  mirrorMesh(): Promise<any>;
   smoothMesh(iterations: number): Promise<any>;
   fillHoles(hole_size: number): Promise<any>;
   extractLargestSurface(min_percent: number): Promise<any>;
