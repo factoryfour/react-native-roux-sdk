@@ -430,6 +430,36 @@ RCT_EXPORT_METHOD(setSize
     }
 }
 
+RCT_EXPORT_METHOD(setEnableColorViewport
+                  : (BOOL)enable resolver
+                  : (RCTPromiseResolveBlock)resolve rejecter
+                  : (RCTPromiseRejectBlock)reject)
+{
+  scandy::core::Status status = ScandyCoreManager.scandyCorePtr->setEnableColorViewport(enable);
+  auto statusString = [self formatStatusError:status];
+
+  if (status == scandy::core::Status::SUCCESS) {
+    return resolve(statusString);
+  } else {
+    return reject(statusString, statusString, nil);
+  }
+}
+
+RCT_EXPORT_METHOD(setEnableColor
+                  : (BOOL)enable resolver
+                  : (RCTPromiseResolveBlock)resolve rejecter
+                  : (RCTPromiseRejectBlock)reject)
+{
+  scandy::core::Status status = ScandyCoreManager.scandyCorePtr->setEnableColor(enable);
+  auto statusString = [self formatStatusError:status];
+
+  if (status == scandy::core::Status::SUCCESS) {
+    return resolve(statusString);
+  } else {
+    return reject(statusString, statusString, nil);
+  }
+}
+
 RCT_EXPORT_METHOD(loadMesh
                   : (NSDictionary*)details resolver
                   : (RCTPromiseResolveBlock)resolve rejecter
