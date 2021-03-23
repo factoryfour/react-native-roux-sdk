@@ -430,6 +430,21 @@ RCT_EXPORT_METHOD(setSize
     }
 }
 
+RCT_EXPORT_METHOD(setNoiseFilter
+                  : (float)percent resolver
+                  : (RCTPromiseResolveBlock)resolve rejecter
+                  : (RCTPromiseRejectBlock)reject)
+{
+  scandy::core::Status status = ScandyCoreManager.scandyCorePtr->setNoiseFilter(percent);
+  auto statusString = [self formatStatusError:status];
+
+  if (status == scandy::core::Status::SUCCESS) {
+    return resolve(statusString);
+  } else {
+    return reject(statusString, statusString, nil);
+  }
+}
+
 RCT_EXPORT_METHOD(setEnableColorViewport
                   : (BOOL)enable resolver
                   : (RCTPromiseResolveBlock)resolve rejecter
